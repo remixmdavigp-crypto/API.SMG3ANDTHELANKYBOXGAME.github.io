@@ -1,0 +1,127 @@
+<html lang="en">
+<head>
+  <link rel="icon" href="/CADRES.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <title>Flying SMG3</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #70c5ce;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+    }
+    /* Make canvas take the full viewport */
+    #gameCanvas {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      border: 2px solid black;
+      background-color: #70c5ce;
+      touch-action: manipulation;
+    }
+    #startOverlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      z-index: 1000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    #startButton {
+      padding: 12px 22px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      min-width: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div id="startOverlay">
+    <h1 id="gameTitle">Flying SMG3</h1>
+    <p id="startHint">Tap or click to start the game and enable sounds!</p>
+
+    <!-- Language selector: large list condensed into a scrollable select for mobile -->
+    <label for="langSelect" style="color:white;margin-top:8px;font-size:14px;">Language</label>
+    <select id="langSelect" style="margin-top:6px;padding:8px;border-radius:8px;border:none;min-width:220px;max-width:calc(90vw);">
+      <option value="auto">Auto (browser)</option>
+      <option value="en">English</option>
+      <option value="pt">Português</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+      <option value="ru">Русский</option>
+      <option value="zh">中文</option>
+      <option value="ar">العربية</option>
+      <option value="hi">हिन्दी</option>
+      <option value="sw">Kiswahili</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="nl">Nederlands</option>
+      <option value="tr">Türkçe</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="pl">Polski</option>
+      <option value="sv">Svenska</option>
+      <option value="no">Norsk</option>
+      <option value="fi">Suomi</option>
+      <option value="cs">Čeština</option>
+      <option value="ro">Română</option>
+      <option value="el">Ελληνικά</option>
+      <option value="hu">Magyar</option>
+      <option value="bg">Български</option>
+      <option value="uk">Українська</option>
+      <option value="he">עברית</option>
+      <option value="bn">বাংলা</option>
+      <option value="mr">मराठी</option>
+      <option value="ta">தமிழ்</option>
+      <option value="te">తెలుగు</option>
+      <option value="kn">ಕನ್ನಡ</option>
+      <option value="ml">മലയാളം</option>
+      <option value="ur">اردو</option>
+      <option value="fa">فارسی</option>
+      <option value="am">አማርኛ</option>
+      <option value="zu">isiZulu</option>
+      <option value="xh">isiXhosa</option>
+      <option value="af">Afrikaans</option>
+      <option value="eo">Esperanto</option>
+      <option value="la">Latina</option>
+      <option value="auto-more" disabled>...many more available internally</option>
+    </select>
+
+    <button id="startButton">Start Game</button>
+  </div>
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- On-screen parenting controls: Up / Down (right) and Left / Right (left) -->
+  <div id="controls-right" style="position: fixed; right: 14px; bottom: 18px; z-index: 1500; display: flex; flex-direction: column; gap: 10px;">
+    <button id="btnUp" aria-label="Up" style="width:56px;height:56px;border-radius:12px;border:none;background:#4CAF50;color:white;font-size:22px;box-shadow:0 4px rgba(0,0,0,0.15);">▲</button>
+    <button id="btnDown" aria-label="Down" style="width:56px;height:56px;border-radius:12px;border:none;background:#f44336;color:white;font-size:22px;box-shadow:0 4px rgba(0,0,0,0.15);">▼</button>
+  </div>
+
+  <!-- On-screen horizontal controls: Left / Right -->
+  <div id="controls-left" style="position: fixed; left: 14px; bottom: 18px; z-index: 1500; display: flex; flex-direction: column; gap: 10px;">
+    <button id="btnLeft" aria-label="Left" style="width:56px;height:56px;border-radius:12px;border:none;background:#607D8B;color:white;font-size:22px;box-shadow:0 4px rgba(0,0,0,0.15);">◀</button>
+    <button id="btnRight" aria-label="Right" style="width:56px;height:56px;border-radius:12px;border:none;background:#FF9800;color:white;font-size:22px;box-shadow:0 4px rgba(0,0,0,0.15);">▶</button>
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
